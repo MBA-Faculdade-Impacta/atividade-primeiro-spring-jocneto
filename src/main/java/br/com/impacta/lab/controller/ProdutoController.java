@@ -13,64 +13,26 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController
+@Restcontroller
 @RequestMapping("/produtos")
-public class ProdutoController {
+public class ProdutoController{
 
-	//http://localhost:8080/produtos
-	public static List<Produtos> bancoDeDados = new ArrayList<>();
-	
-	@PostMapping("")
-	public ResponseEntity<Produtos> criarProduto(@RequestBody Produtos produtos) {
-		bancoDeDados.add(produtos);
-		
-		return ResponseEntity.ok(produtos);
-	}
-	
-	@GetMapping("")
-	public ResponseEntity<List<Pessoa>> consultarPessoas() {
-		return ResponseEntity.ok(bancoDeDados);
-	}
-	
-	@GetMapping("/{id}")
-	public ResponseEntity<Pessoa> consultarPessoaPorId(@PathVariable("id") int id) {
-		
-		for (int contador = 0; contador < bancoDeDados.size(); contador++) {
-			Pessoa pessoa = bancoDeDados.get(contador);
-			if (pessoa.getId() == id) {
-				return ResponseEntity.ok(pessoa);
-			}
-		}
-		return ResponseEntity.noContent().build();
-		
-	}
-	
-	@PutMapping("/{id}")
-	public ResponseEntity<Pessoa> alterarStatusDeVida(@PathVariable("id") int id,
-			@RequestBody Pessoa newPessoa) {
-		
-		for (int contador = 0; contador < bancoDeDados.size(); contador++) {
-			Pessoa pessoa = bancoDeDados.get(contador);
-			if (pessoa.getId() == id) {
-				pessoa.setVivo(newPessoa.isVivo());
-				
-				return ResponseEntity.ok(pessoa);
-			}
-		}
-		return ResponseEntity.notFound().build();
-	}
-	
-	@DeleteMapping("/{id}")
-	public ResponseEntity<Pessoa> deletarPessoa(@PathVariable("id") int id) {
-		
-		for (int contador = 0; contador < bancoDeDados.size(); contador++) {
-			Pessoa pessoa = bancoDeDados.get(contador);
-			if (pessoa.getId() == id) {
-				bancoDeDados.remove(contador);
-				return ResponseEntity.ok(pessoa);
-			}
-		}
-		return ResponseEntity.notFound().build();
-	}
-	
+private static List<Produto> bancoDeDados = new ArrayList<>();
+
+@PostMapping
+public ResponseEntity<Produto> criarProduto(@RequestBody Produto produto){
+
+bancoDeDados.add(produto);
+
+  //return ResponseEntity.created().build();
+
+  return ResponseEntity.ok(produto);
+}
+
+@GetMapping
+public ResponseEntity<?> buscarProdutos(){
+  return ResponseEntity.ok(bancoDeDados);
+}
+
+
 }

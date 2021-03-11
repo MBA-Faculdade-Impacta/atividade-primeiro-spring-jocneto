@@ -4,17 +4,17 @@ public class Produto {
 
 	private int codigo;
 	private String descricao;
-	private double tipo;
+	private double valor;
 
-	public int getId() {
-		return id;
+	public int getcodigo() {
+		return codigo;
 	}
 
-	public void setId(int codigo) {
+	public void setcodigo(int codigo) {
 		this.codigo = codigo;
 	}
 
-	  public String descricao() {
+	  public String getdescricao() {
 		return descricao;
 	}
 
@@ -23,12 +23,12 @@ public class Produto {
 	}
 
 
-	public double tipo() {
-		return tipo;
+	public double getvalor() {
+		return valor;
 	}
 
-	public void tipo(double tipo) {
-		this.tipo = tipo;
+	public void setvalor(double valor) {
+		this.valor = valor;
 	}
 
 }
