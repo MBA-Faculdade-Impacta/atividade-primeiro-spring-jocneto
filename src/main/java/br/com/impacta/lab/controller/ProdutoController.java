@@ -34,5 +34,34 @@ public ResponseEntity<?> buscarProdutos(){
   return ResponseEntity.ok(bancoDeDados);
 }
 
+@PutMapping("/{id}")
+public ResponseEntity<?> alterarProduto(@PathVariable("id") int id, @REquestBody Produto produto) {
 
+
+  for (int contador = 0; contador < bancoDeDados.size(); contador++){
+    Produto produto = bancoDeDados.get(contador);
+    if (produto.getCodigo() == id)  {
+      produto.setDescricao(newProduto.getDescricao());
+      produto.setValor(newProduto.getValor());
+      //break
+    }
+  }
+
+  //return ResponseEntity.ok(produto);
+  return ResponseEntity.notFound().build();
+}
+
+@DeleteMapping("/{id}")
+public ResponseEntity<?> deletarProduto(@PathVariable int id ){
+
+for (int contador = 0; contador < bancoDeDados.size(); contador++){
+    Produto produto = bancoDeDados.get(contador);
+    if (produto.getCodigo() == id) {
+      bancoDeDados.remove(contador);
+      return ResponseEntity.ok();
+      //break
+    }
+    return ResponseEntity.notFound().build();
+}
+ 
 }
